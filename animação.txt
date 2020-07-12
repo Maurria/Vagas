@@ -1,0 +1,203 @@
+import React, {useState, useEffect} from 'react';
+import { 
+  StyleSheet,
+  Text,
+  View,
+  TextInput, 
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Image,
+  Animated,
+  Keyboard
+   } from 'react-native';
+
+export default function App() {
+
+    /*const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
+    const [opacity] = useState(new Animated.Value(0));
+    const [logo] = useState(new Animated.ValueXY({x:80, y: 80}));
+
+  useEffect(()=> {
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    keyboardDidHideListener = Keyboard.addListener('KeyboardDidHide', keyboardDidHide);
+
+
+    Animated.parallel([
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration:200,
+      })
+    ]).start();
+    
+  }, []);
+
+  function keyboardDidShow(){
+    
+    Animated.parallel([
+      Animated.timing(logo.x,{
+        toValue: 55,
+        duration: 100,
+      }),
+      Animated.timing(logo.y,{
+        toValue: 65,
+        duration: 100,
+      }),
+    ]).start();
+
+  }
+
+  function keyboardDidHide(){
+    Animated.parallel([
+      Animated.timing(logo.x,{
+        toValue: 80,
+        duration: 100,
+      }),
+      Animated.timing(logo.y,{
+        toValue: 80,
+        duration: 100,
+      }),
+    ]).start();
+  }*/
+
+  return (
+    <KeyboardAvoidingView style = {styles.back}>
+    <View >
+      <Animated.Image 
+      style = {{
+        width: logo.x,
+        height: logo.y,
+        borderRadius: 50,
+      }}
+      source ={require('./assets/logo1.png')}
+      />
+    </View>
+    
+    <Animated.View 
+    style = {[
+      styles.centro,
+      {
+        opacity: opacity,
+        transform: [
+          { translateY: offset.y }
+        ]
+      }]}
+    >
+
+    <Text style={styles.label}>E-mail *</Text>
+    <TextInput 
+       style = {styles.input}
+        placeholder="e-mail"
+        placeholderTextColor="#C1BCBC"
+        autoCapitalize="none"
+        onChangeText={ () => false }
+    />
+
+    <Text style={styles.label}>Senha *</Text>
+    <TextInput 
+        style = {styles.input}
+        placeholder="Senha"
+        placeholderTextColor="#C1BCBC"     
+        autoCapitalize="none"
+        onChangeText={ () => false }
+     />
+
+     <TouchableOpacity style = {styles.button}>
+         <Text style = {styles.buttonText}>Entrar</Text>
+     </TouchableOpacity>
+
+     <Text style = {styles.ou}>Ou</Text>
+
+     <View >
+      <Image style = {styles.acesso}
+      source ={require('./assets/face.png')}
+       />
+        <Image style = {styles.acesso}
+      source ={require('./assets/google.png')}
+       />
+    </View>
+
+     <TouchableOpacity style = {styles.button}>
+         <Text style = {styles.buttonText}>Criar conta gratuita</Text>
+     </TouchableOpacity>
+    </Animated.View>
+</KeyboardAvoidingView>     
+);
+
+}
+
+const styles = StyleSheet.create({
+    back: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#5835A3',
+    },
+
+
+    centro: {
+      marginTop: 10,
+      backgroundColor: '#FFF',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '95%',
+      paddingBottom: 50,
+
+    },
+
+    label: {
+      padding: 10,
+      fontWeight: 'bold',
+      color: '#444',
+      marginBottom: 2,
+      marginRight: 308,
+      
+  },
+  
+    input: {
+      backgroundColor: '#FAFAFA',
+      width: '90%',
+      marginBottom: 15,
+      fontSize: 16,
+      color: '#FFF',
+      borderRadius: 10,
+      padding: 10,
+      
+  },
+
+  acesso: {
+
+    maxWidth: 50,
+    height: 50,
+    borderRadius: 40,
+  },
+
+  button: {
+    backgroundColor: '#C1BCBC',
+    height: 42,
+    width:'90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    marginTop: 5,
+    marginLeft: 50,
+    marginRight: 50,
+},
+
+buttonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+},
+
+ou: {
+  padding: 10,
+  fontWeight: 'bold',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+}
+});

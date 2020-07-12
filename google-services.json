@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "38892742038",
+    "firebase_url": "https://vagas-7555f.firebaseio.com",
+    "project_id": "vagas-7555f",
+    "storage_bucket": "vagas-7555f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38892742038:android:88bc218a30d2fb3b2429b7",
+        "android_client_info": {
+          "package_name": "Vagas.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38892742038-a1a0mums5dcls4tr0tod9cqmhq098ph2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlelhp-57jxOE77RdGrhodKH-C2WmWxn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38892742038-a1a0mums5dcls4tr0tod9cqmhq098ph2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
