@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, View, TextInput, Text, StyleSheet,TouchableOpacity  } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, View, TextInput, Text, StyleSheet,TouchableOpacity  } from 'react-native';
 
 import Forms from '../components/Forms';
 
@@ -14,11 +14,65 @@ export default class Cadastro extends React.Component{
 			mail: '',
         	password: '',
         	message:'',
+        	 isLoading: false,
 
 		}
 	}
 
-	 getMessageByErrorCode(errorCode) {
+	 
+
+
+	onChangeCadastrar(field, value){
+        this.setState({
+          [field] : value
+        });
+    }
+
+
+     Cad (){
+		return this.props.navigation.navigate('Dashboard');
+     }
+
+      Cadastrar () {
+        // função que direcionar o usuário se caso passar os dados corretoss
+      const loginUserSucess = user =>{
+        return this.props.navigation.navigate('Dashboard');
+          
+      }
+        //função que capta os erros de acesso! 
+      const loginUserFailed = error => {
+         this.setState({ 
+               message: this.getMessageByErrorCode(error.code)
+            });
+      }
+
+          this.setState({ isLoading: true, message: '' });
+        const {mail: email, password} = this.state;
+
+        firebase
+          .auth()//metódo para autenticar do próprio firebase
+          .createUserWithEmailAndPassword(email, password) // seria para criar ainda n funciona
+          .then(loginUserSucess)
+          .catch(loginUserFailed)
+
+
+        .catch(error => {
+          if (error.code === 'auth/user-not-found'){
+            return Alert.alert(//caixa de alerta de quando o usuário não for encontrar
+              'Usuário já existente',
+              'Deseja criar uma cadastro',
+              
+            { cancelable: false }
+          )
+            }
+
+              loginUserFailed(error);
+         
+        })
+        .then(()=> this.setState({isLoading: false}));
+    }
+
+    getMessageByErrorCode(errorCode) {
         switch (errorCode) {
           case 'auth/wrong-password':
             return 'Senha incorreta';
@@ -28,21 +82,6 @@ export default class Cadastro extends React.Component{
             return 'Erro desconhecido';
         }
       }
-
-
-	onChangeLogar(field, value){
-        this.setState({
-          [field] : value
-        });
-    }
-
-    Cadastro () {
-        return this.props.navigation.navigate('Cadastro');
-      }
-
-     Cad (){
-		return this.props.navigation.navigate('Dashboard');
-     }
 
      renderMessage(){
     const { message } = this.state;
@@ -55,6 +94,19 @@ export default class Cadastro extends React.Component{
       </View>
     );
   }
+
+  renderButton2(){
+    if(this.state.isLoading)
+          return <ActivityIndicator />
+  return(
+     <TouchableOpacity 
+ 		 onPress={()=> this.Cadastrar()}
+			style = {styles.button}> 
+      
+       <Text style = {styles.buttonText}>Finalizar Cadastro </Text>
+       
+   </TouchableOpacity>
+  )}
 
 
 
@@ -69,11 +121,11 @@ export default class Cadastro extends React.Component{
 					
 						<TextInput 
 						   style = {styles.input}
-						    type = "email"
-						    placeholder="Digite seu e-mail"
-						    placeholderTextColor="#C1BCBC"
-						    value= {this.state.mail}  
-						    onChangeText={value => this.onChangeLogar('mail', value)}
+							    type = "email"
+							    placeholder="Digite seu e-mail"
+							    placeholderTextColor="#C1BCBC"
+							    value= {this.state.mail}  
+							    onChangeText={value => this.onChangeCadastrar('mail', value)}
 						/>
 				</Forms>
 
@@ -87,20 +139,13 @@ export default class Cadastro extends React.Component{
 					    placeholderTextColor="#C1BCBC"     
 					    autoCapitalize="none"
 					    value={this.state.password}
-					     onChangeText={value => this.onChangeLogar('password',value)}
-					 />
+					     onChangeText={value => this.onChangeCadastrar('password',value)}
+										 />
 				</Forms>
 				</View>
 
-				<View>
-					<TouchableOpacity 
-					   onPress={()=> this.Cad()}
-					   style = {styles.button}> 
-      
-					    <Text style = {styles.buttonText}>Finalizar Cadastro </Text>
-					       
-					  </TouchableOpacity>	
-				</View>
+				 { this.renderButton2() }
+				 { this.renderMessage() }
 
 				
 
@@ -152,9 +197,4 @@ const styles = StyleSheet.create({
 });
 
 
-					/*firebase
-                  .auth()//metódo para autenticar do próprio firebase
-                  .createUserWithEmailAndPassword(mail, password) // seria para criar ainda n funciona
-                  .then(loginUserSucess)
-                  .catch(loginUserFailed)*/
-					//onPress={()=> this.Cad()}
+					

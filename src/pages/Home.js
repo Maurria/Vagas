@@ -44,42 +44,45 @@ const styles = StyleSheet.create({
 
      imag:{
         
-        maxWidth: 150,
-        height: 150,
+        maxWidth: 120,
+        height: 120,
         borderRadius: 100
      },
 
       topp:{ 
-        paddingTop: 10,  
+        paddingTop: 40,  
     },
     log:{
-      marginTop: 50,
+      paddingTop:20,
       width: '70%',
       borderRadius: 30, 
       justifyContent: 'center',
       alignContent: 'center',
-      alignItems:'center' 
+      alignItems:'center',
+
+
     },
 
     button: {
+
         backgroundColor: '#5835A3',
-        height: 70,
-        width:'90%',
+        height: 60,
+        width:'120%',
         alignItems:'center',
         justifyContent: 'center',
         alignContent: 'center',
         borderRadius: 50,
-        marginTop: 5,
+        marginTop: 30
        
     },
     buttonText: {
         color: '#FFF',
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 18,
         },
         logo: {
-            maxWidth: 70,
-            height: 70,
+            maxWidth: 50,
+            height: 50,
             borderRadius: 38,
           },
           txt: {
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
             paddingTop:50,
             color: '#5835A3',
             fontWeight: 'bold',
-            fontSize: 16, 
+            fontSize: 20, 
           }
 });
 

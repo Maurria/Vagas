@@ -72,7 +72,7 @@ export default class Login extends React.Component {
         // função que direcionar o usuário se caso passar os dados corretoss
       const loginUserSucess = user =>{
         return this.props.navigation.navigate('Dashboard');
-          //this.setState({ message: "Sucesso!" });
+          
       }
         //função que capta os erros de acesso! 
       const loginUserFailed = error => {
@@ -313,7 +313,7 @@ label2:{
   marginTop: 'auto',
   alignItems: 'center',
   alignContent: 'center',
-  paddingTop: 20
+  paddingTop: 5
 },
 
 input: {

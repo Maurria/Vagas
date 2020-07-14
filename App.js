@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { createStore, applyMiddleware } from 'redux';
+/*import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './src/reducers';
-import ReduxThunk from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';*/
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,7 +14,7 @@ import Sobre from './src/pages/Sobre';
 import Dashboard from './src/pages/Dashboard';
 import Cadastro from './src/pages/Cadastro';
 
-const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+//const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 
 const Stack = createStackNavigator();
@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
  export default function App () {  
  
     return(
-      <Provider store={store}>
+      //<Provider store={store}>
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen 
@@ -52,7 +52,7 @@ const Stack = createStackNavigator();
               borderBottomColor: '#C5C5C5'
             },
             headerTitleStyle: {
-               marginLeft: 115
+               marginLeft: 113
               
               
             }
@@ -84,8 +84,8 @@ const Stack = createStackNavigator();
               borderBottomColor: '#C5C5C5'
             },
             headerTitleStyle: {
-              alignContent: 'center'
-              
+              alignContent: 'center',
+              marginLeft: 85
               
             }
         }}
@@ -101,16 +101,16 @@ const Stack = createStackNavigator();
               borderBottomColor: '#C5C5C5'
             },
             headerTitleStyle: {
-              alignContent: 'center'
-              
-              
+              alignContent: 'center',
+               marginLeft: 95
+               
             }
         }}
         />
 
       </Stack.Navigator>
     </NavigationContainer>
-   </Provider>
+  // </Provider>
   );
 }
 
