@@ -28,11 +28,6 @@ export default class Cadastro extends React.Component{
         });
     }
 
-
-     Cad (){
-		return this.props.navigation.navigate('Dashboard');
-     }
-
       Cadastrar () {
         // função que direcionar o usuário se caso passar os dados corretoss
       const loginUserSucess = user =>{
@@ -42,7 +37,7 @@ export default class Cadastro extends React.Component{
         //função que capta os erros de acesso! 
       const loginUserFailed = error => {
          this.setState({ 
-               message: this.getMessageByErrorCode(error.code)
+               message: this.getMessageByErrorCode2(error.code)
             });
       }
 
@@ -53,44 +48,42 @@ export default class Cadastro extends React.Component{
           .auth()//metódo para autenticar do próprio firebase
           .createUserWithEmailAndPassword(email, password) // seria para criar ainda n funciona
           .then(loginUserSucess)
-          .catch(loginUserFailed)
+         // .catch(loginUserFailed)
 
 
         .catch(error => {
-          if (error.code === 'auth/user-not-found'){
-            return Alert.alert(//caixa de alerta de quando o usuário não for encontrar
-              'Usuário já existente',
-              'Deseja criar uma cadastro',
-              
-            { cancelable: false }
-          )
+          if (error.code === 'auth/email-already-exists'){
+            return 
+               message: this.getMessageByErrorCode(error.code)
+            
+          
             }
 
-              loginUserFailed(error);
+             //loginUserFailed(error);
          
         })
         .then(()=> this.setState({isLoading: false}));
     }
 
-    getMessageByErrorCode(errorCode) {
-        switch (errorCode) {
-          case 'auth/wrong-password':
-            return 'Senha incorreta';
-          case 'auth/user-not-found':
-            return 'Usuário não encontrado';
+    getMessageByErrorCode2(errorCode2) {
+        switch (errorCode2) {
+          case 'auth/email-already-exists':
+            return 'Usuário já existe';
+            case '':
+            return 'Você precisa digitar um E-mail e Senha';
           default:
             return 'Erro desconhecido';
         }
       }
 
-     renderMessage(){
+     renderMessage2(){
     const { message } = this.state;
     if(!message)
       return null;
 
     return (
       <View>
-        <Text>{ message }</Text>
+        <Text style = {styles.button}>{ message }</Text>
       </View>
     );
   }
@@ -145,7 +138,8 @@ export default class Cadastro extends React.Component{
 				</View>
 
 				 { this.renderButton2() }
-				 { this.renderMessage() }
+
+				 { this.renderMessage2() }
 
 				
 

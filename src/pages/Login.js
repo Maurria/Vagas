@@ -98,7 +98,7 @@ export default class Login extends React.Component {
           if (error.code === 'auth/user-not-found'){
             return Alert.alert(//caixa de alerta de quando o usuário não for encontrar
               'Usuário não encontrado',
-              'Deseja criar uma cadastro',
+              'Deseja criar um cadastro',
               [{
               text: 'Não',
               onPress: () => console.log('usuário não quer criar conta'),
